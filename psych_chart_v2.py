@@ -3,7 +3,6 @@ import psychrolib as psy
 import numpy as np
 import PySimpleGUI as sg
 from matplotlib import pyplot as plt
-from IPython.display import clear_output
 
 plotted_points = []
 x_coord = []
@@ -256,27 +255,24 @@ instructions = 'Input values for dry bulb temp and at least one other variable b
 labels = ('Dry Bulb Temp (°F)', 'Wet Bulb Temp (°F)', 'Relative Humidity (%)', 'Dew Point (°F)')
 description = ''
 
+# functions to allow ui to be used and change in real time
 def input_cells():
     return [
         [sg.Text(item, size=size1, pad=(5, 5)),
          sg.Input(default, size=size2, enable_events=True, key=f'input_{item}', expand_x=True)]
             for item in input_items]
-
 def output_cells():
     return [
         [sg.Text(item, size=size1, pad=(5, 5)),
          sg.Input(default, size=size2, disabled=True, background_color='CadetBlue1', key=f'output_{item}', expand_x=True)]
             for item in output_items]
-
 def description_cells():
         return [
             [sg.Text(instructions, size=size1, pad=(5, 5), expand_x=True)]
         ]
-
 def process_cells(string):
         return [
             [sg.Text(string, size=size1, pad=(5, 5), expand_x=True, key='Process')]
         ]
 
-if __name__ == "__main__":
-    gui()
+gui()
